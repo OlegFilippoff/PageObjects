@@ -5,7 +5,9 @@ import com.codeborne.selenide.SelenideElement;
 import com.github.javafaker.Faker;
 import lombok.Value;
 import lombok.val;
+
 import java.util.Locale;
+
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -41,9 +43,10 @@ public class DashboardPage {
     }
 
     public void popUpFirstCard() {
-       popUpFirstCard.click();
+        popUpFirstCard.click();
     }
+
     public void popUpSecondCard() {
-       popUpSecondCard.click();
+        popUpSecondCard.click();
     }
 }
