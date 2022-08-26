@@ -34,11 +34,11 @@ public class DataHelper {
         private String cardNumber;
     }
 
-    public static final CardNumber getcardNumber1() {
+    public static final CardNumber getCardNumber1() {
         return new CardNumber("5559000000000001");
     }
 
-    public static final CardNumber getcardNumber2() {
+    public static final CardNumber getCardNumber2() {
         return new CardNumber("5559000000000002");
     }
 

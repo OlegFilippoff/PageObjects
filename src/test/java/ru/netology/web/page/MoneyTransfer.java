@@ -30,8 +30,8 @@ public class MoneyTransfer {
     private int amount = fake.number().numberBetween(1, 1000);
 
     public void transferFromFirstToSecond(int amount) {
-        String firstCard = DataHelper.getcardNumber1().getCardNumber();
-        String secondCard = DataHelper.getcardNumber2().getCardNumber();
+        String firstCard = DataHelper.getCardNumber1().getCardNumber();
+        String secondCard = DataHelper.getCardNumber2().getCardNumber();
         dashboardPage.popUpFirstCard();
         popUpString.doubleClick().val(amount + "");
         from.val(secondCard);
@@ -39,8 +39,8 @@ public class MoneyTransfer {
     }
 
     public void transferFromSecondToFirst(int amount) {
-        String firstCard = DataHelper.getcardNumber1().getCardNumber();
-        String secondCard = DataHelper.getcardNumber2().getCardNumber();
+        String firstCard = DataHelper.getCardNumber1().getCardNumber();
+        String secondCard = DataHelper.getCardNumber2().getCardNumber();
         dashboardPage.popUpSecondCard();
         popUpString.doubleClick().val(amount + "");
         from.val(firstCard);
@@ -48,8 +48,8 @@ public class MoneyTransfer {
     }
 
     public void transferFromSecondToSecond(int amount) {
-        String firstCard = DataHelper.getcardNumber1().getCardNumber();
-        String secondCard = DataHelper.getcardNumber2().getCardNumber();
+        String firstCard = DataHelper.getCardNumber1().getCardNumber();
+        String secondCard = DataHelper.getCardNumber2().getCardNumber();
         dashboardPage.popUpSecondCard();
         popUpString.doubleClick().val(amount + "");
         from.val(secondCard);
@@ -57,8 +57,8 @@ public class MoneyTransfer {
     }
 
     public void transferFromFirstToFirst(int amount) {
-        String firstCard = DataHelper.getcardNumber1().getCardNumber();
-        String secondCard = DataHelper.getcardNumber2().getCardNumber();
+        String firstCard = DataHelper.getCardNumber1().getCardNumber();
+        String secondCard = DataHelper.getCardNumber2().getCardNumber();
         dashboardPage.popUpSecondCard();
         popUpString.doubleClick().val(amount + "");
         from.val(secondCard);
