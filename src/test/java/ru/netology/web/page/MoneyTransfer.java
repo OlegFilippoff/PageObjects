@@ -27,7 +27,9 @@ public class MoneyTransfer {
     }
 
     Faker fake = new Faker(new Locale("ru"));
-    private int amount = fake.number().numberBetween(1, 1000);
+
+
+    private int amount = fake.number().numberBetween(0, new DashboardPage().returnMaxBalance());
 
     public void transferFromFirstToSecond(int amount) {
         String firstCard = DataHelper.getCardNumber1().getCardNumber();

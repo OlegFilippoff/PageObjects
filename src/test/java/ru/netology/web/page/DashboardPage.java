@@ -49,4 +49,15 @@ public class DashboardPage {
     public void popUpSecondCard() {
         popUpSecondCard.click();
     }
+
+    public int returnMaxBalance() {
+        int max = 0;
+        for (int i = 0; i < cards.size(); i++) {
+            getCardBalance(i);
+            if (getCardBalance(i) > max) {
+                max = getCardBalance(i);
+            }
+        }
+        return max;
+    }
 }
