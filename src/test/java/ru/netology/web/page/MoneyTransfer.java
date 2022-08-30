@@ -21,13 +21,11 @@ public class MoneyTransfer {
     SelenideElement popUpButton = $("[data-test-id=action-transfer]");
     SelenideElement cancelButton = $("[data-test-id=action-cancel]");
     DashboardPage dashboardPage = new DashboardPage();
-
+    Faker fake = new Faker(new Locale("ru"));
+    private int amount = fake.number().numberBetween(1, new DashboardPage().returnMaxBalance());
     public MoneyTransfer() {
         h1.shouldBe(Condition.visible, Duration.ofMillis(15));
     }
-
-    Faker fake = new Faker(new Locale("ru"));
-    private int amount = fake.number().numberBetween(1, 1000);
 
     public void transferFromFirstToSecond(int amount) {
         String firstCard = DataHelper.getCardNumber1().getCardNumber();
