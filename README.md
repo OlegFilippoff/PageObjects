@@ -32,6 +32,8 @@
 
 ## Задача №1 - Page Object's
 
+[![Build status](https://ci.appveyor.com/api/projects/status/aw2fcmxr7go4beny/branch/master?svg=true)](https://ci.appveyor.com/project/OlegFilippoff/pageobjects/branch/master)
+
 Вам необходимо "добить" тестирование функции перевода с карты на карту. Разработчики пока реализовали возможность перевода только между своими картами, но уже хотят, чтобы вы всё протестировали.
 
 Для этого они не поленились и захардкодили вам целого одного пользователя:
