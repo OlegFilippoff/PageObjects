@@ -40,7 +40,7 @@ public class Steps {
         dashboardPage.getPersonalAccount().shouldBe(Condition.visible);
     }
 
-    @When("the user transfers money in amount of 5000 RUB from his card \"5559 0000 0000 0002\" to his first card")
+    @When("the user transfers money in amount of 5000 RUB from his card 5559 0000 0000 0002 to his first card")
     public void moneyTransfer5000(int amount) {
         moneyTransfer.transferFromFirstToSecond(5000);
     }
