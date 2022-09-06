@@ -20,14 +20,15 @@ public class Steps {
     private static MoneyTransfer moneyTransfer;
 
 
-    @Given("login page is opened")
-    public void openPage() {
-        open("http://localhost:9999");
+    @Given("login page is opened {string}")
+    public void openPage(String url) {
+
+        loginPage = open(url, LoginPageV2.class);
     }
 
     @When("the field login is filled with {string} and password {string}")
     public void loginAndPass(String login, String pass) {
-        verificationPage = loginPage.validLogin(new DataHelper.AuthInfo(login, pass));
+        verificationPage = loginPage.validLogin(DataHelper.getAuthInfo());
     }
 
     @And("user inputs a valid code from SMS {string}")
@@ -37,17 +38,24 @@ public class Steps {
 
     @Then("the user gets in a personal account")
     public void verifyDashBoard() {
-        dashboardPage.getPersonalAccount().shouldBe(Condition.visible);
+      dashboardPage.getPersonalAccount().shouldBe(Condition.visible);
+      moneyTransfer = new MoneyTransfer();
     }
 
-    @When("the user transfers money in amount of 5000 RUB from his card 5559 0000 0000 0002 to his first card")
+    @When("the user transfers money in amount of {int} RUB from his card 5559000000000002 to his first card")
     public void moneyTransfer5000(int amount) {
-        moneyTransfer.transferFromFirstToSecond(5000);
+        moneyTransfer.transferFromSecondToFirst(5000);
     }
 
-    @Then("The balance of the card is 15000 RUB after popUp")
-    public int CardBalance(int index) {
-        return dashboardPage.getCardBalance(0);
+    @Then("The balance of the card {string} is 15000 RUB after popUp")
+    public int CardBalance(String cardNum) {
+        int index =0;
+        if (cardNum.equals("5559000000000001")) {
+            index = 1;
+        } else {
+            index = 2;
+        }
+        return dashboardPage.getCardBalance(index);
     }
 
     @Given("Open Browser")

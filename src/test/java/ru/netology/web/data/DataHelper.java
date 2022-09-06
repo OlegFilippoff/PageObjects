@@ -28,8 +28,8 @@ public class DataHelper {
 
     @Value
     public static class AuthInfo {
-        private String login;
-        private String password;
+        public String login;
+        public String password;
     }
 
     @Value
