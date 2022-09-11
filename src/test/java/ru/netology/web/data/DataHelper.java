@@ -39,7 +39,7 @@ public class DataHelper {
         return amount;
     }
     public static int getAmountNegative() throws RuntimeException {
-        int amountNegative = fake.number().numberBetween(10000, Integer.MAX_VALUE);
+        int amountNegative = fake.number().numberBetween(DataHelper.getAmountNegative(), Integer.MAX_VALUE);
         return amountNegative;
     }
 

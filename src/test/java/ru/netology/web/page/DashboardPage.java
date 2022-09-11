@@ -62,7 +62,17 @@ public class DashboardPage {
         }
         return minBalance;
     }
+    public static int returnMaxBalanceNegative() {
+        int maxBalance = Integer.MAX_VALUE;
+        for (int i = 0; i < cards.size(); i++) {
+            int balance = getCardBalance(i);
+            if (balance > maxBalance) {
+                maxBalance = balance;
 
+            }
+        }
+        return maxBalance;
+    }
 }
 
 
