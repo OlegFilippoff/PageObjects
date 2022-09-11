@@ -9,9 +9,3 @@ Feature: Login and Transfer Money between cards
     Then the user gets in a personal account
     When the user transfers money in amount of 5000 RUB from his card 5559000000000002 to his first card
     Then The balance of the card "5559000000000001" is 15000 RUB after popUp
-
-
-#Feature: Open Browser
-#
-#  Scenario: Open Chrome on mail.ru
-#    Given Open Browser
