@@ -1,8 +1,15 @@
 package ru.netology.web.data;
 
+import com.github.javafaker.Faker;
 import lombok.Value;
+import ru.netology.web.page.DashboardPage;
+
+import java.util.Locale;
 
 public class DataHelper {
+
+    static Faker fake = new Faker(new Locale("ru"));
+
     private DataHelper() {
     }
 
@@ -26,10 +33,21 @@ public class DataHelper {
         return new CardNumber("5559000000000002");
     }
 
+
+    public static int getAmount() {
+        int amount = fake.number().numberBetween(1, DashboardPage.returnMaxBalance());
+        return amount;
+    }
+
+    public static int getAmountNegative() throws RuntimeException {
+        int amountNegative = fake.number().numberBetween(DataHelper.getAmountNegative(), Integer.MAX_VALUE);
+        return amountNegative;
+    }
+
     @Value
     public static class AuthInfo {
-        public String login;
-        public String password;
+        private String login;
+        private String password;
     }
 
     @Value
@@ -43,3 +61,4 @@ public class DataHelper {
     }
 
 }
+

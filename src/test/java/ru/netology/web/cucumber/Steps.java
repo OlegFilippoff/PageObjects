@@ -38,18 +38,18 @@ public class Steps {
 
     @Then("the user gets in a personal account")
     public void verifyDashBoard() {
-      dashboardPage.getPersonalAccount().shouldBe(Condition.visible);
-      moneyTransfer = new MoneyTransfer();
+        dashboardPage.getPersonalAccount().should(Condition.visible);
     }
 
-    @When("the user transfers money in amount of {int} RUB from his card 5559000000000002 to his first card")
-    public void moneyTransfer5000(int amount) {
-        moneyTransfer.transferFromSecondToFirst(5000);
+    @When("the user transfers money in amount of {int} RUB from his card {string} to his first card")
+    public void moneyTransfer5000(int amount, String cardNumber) {
+        moneyTransfer = dashboardPage.popUpFirstCard();
+        moneyTransfer.transferMoneyFrom(cardNumber, amount);
     }
 
     @Then("The balance of the card {string} is 15000 RUB after popUp")
     public int CardBalance(String cardNum) {
-        int index =0;
+        int index = 0;
         if (cardNum.equals("5559000000000001")) {
             index = 1;
         } else {
