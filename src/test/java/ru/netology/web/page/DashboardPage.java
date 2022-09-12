@@ -68,7 +68,6 @@ public class DashboardPage {
             int balance = getCardBalance(i);
             if (balance > maxBalance) {
                 maxBalance = balance;
-
             }
         }
         return maxBalance;
