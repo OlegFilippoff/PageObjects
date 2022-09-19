@@ -5,10 +5,12 @@ import lombok.Value;
 import ru.netology.web.page.DashboardPage;
 
 import java.util.Locale;
+import java.util.NoSuchElementException;
 
+@Value
 public class DataHelper {
 
-    static Faker fake = new Faker(new Locale("ru"));
+    private static Faker fake = new Faker(new Locale("ru"));
 
     private DataHelper() {
     }
@@ -25,38 +27,41 @@ public class DataHelper {
         return new VerificationCode("12345");
     }
 
-    public static final CardNumber getCardNumber1() {
-        return new CardNumber("5559000000000001");
+    public static CardInfo getCardNumber1() {
+        return new CardInfo("5559000000000001");
     }
 
-    public static final CardNumber getCardNumber2() {
-        return new CardNumber("5559000000000002");
+    public static CardInfo getCardNumber2() {
+        return new CardInfo("5559000000000002");
     }
 
 
-    public static int getAmount() {
-        int amount = fake.number().numberBetween(1, DashboardPage.returnMaxBalance());
-        return amount;
+    public static int getMaxPossibleAmount(CardInfo cardInfo) throws NoSuchElementException {
+        DashboardPage dash = new DashboardPage();
+        int possibleAmount = dash.getCardBalance(cardInfo);
+        return fake.number().numberBetween(0, possibleAmount);
     }
-    public static int getAmountNegative() throws RuntimeException {
-        int amountNegative = fake.number().numberBetween(DataHelper.getAmountNegative(), Integer.MAX_VALUE);
-        return amountNegative;
+
+    public static int getMaxImpossibleAmount(CardInfo cardInfo) throws NoSuchElementException {
+        DashboardPage dash = new DashboardPage();
+        int possibleAmount = dash.getCardBalance(cardInfo);
+        return fake.number().numberBetween(possibleAmount, possibleAmount + 1);
     }
 
     @Value
     public static class AuthInfo {
-        private String login;
-        private String password;
+        String login;
+        String password;
     }
 
     @Value
     public static class VerificationCode {
-        private String code;
+        String code;
     }
 
     @Value
-    public static class CardNumber {
-        private String cardNumber;
+    public static class CardInfo {
+        String cardNumber;
     }
 
 }

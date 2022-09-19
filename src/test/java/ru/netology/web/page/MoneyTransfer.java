@@ -1,13 +1,15 @@
 package ru.netology.web.page;
 
+
 import com.codeborne.selenide.SelenideElement;
 import lombok.Value;
 import ru.netology.web.data.DataHelper;
 
-import javax.xml.crypto.Data;
+import java.time.Duration;
 
+import static com.codeborne.selenide.Condition.exactText;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
-
 
 
 @Value
@@ -17,19 +19,22 @@ public class MoneyTransfer {
     SelenideElement transferTo = $("[data-test-id=to]");
     SelenideElement popUpButton = $("[data-test-id=action-transfer]");
     SelenideElement cancelButton = $("[data-test-id=action-cancel]");
+    SelenideElement errorMessage = $("[data-test-id=error-message]");
 
-    public void transferMoneyFrom(DataHelper.CardNumber cardNumberFrom, int amount) {
-        popUpString.doubleClick().val(amount + "");
-        from.val(cardNumberFrom.getCardNumber());
+    public void transferMoney(DataHelper.CardInfo cardNumber, String amount) throws RuntimeException {
+        popUpString.val(amount);
+        from.val(cardNumber.getCardNumber());
         popUpButton.click();
     }
 
-    public void transferMoneyNegative(DataHelper.CardNumber cardNumberFrom, int amount) throws RuntimeException {
-        popUpString.doubleClick().val(amount + "");
-        from.val(cardNumberFrom.getCardNumber());
-        popUpButton.click();
+    public DashboardPage makeValidTransfer(DataHelper.CardInfo cardNumber, String amount) {
+        transferMoney(cardNumber, amount);
+        return new DashboardPage();
     }
 
+    public void depositError(String expectedText) throws RuntimeException {
+        errorMessage.shouldHave(exactText(expectedText)).shouldBe(visible, Duration.ofMillis(15));
+    }
 }
 
 
