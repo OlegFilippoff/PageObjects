@@ -6,6 +6,7 @@ import ru.netology.web.page.DashboardPage;
 
 import java.util.Locale;
 import java.util.NoSuchElementException;
+import java.util.Random;
 
 @Value
 public class DataHelper {
@@ -36,16 +37,14 @@ public class DataHelper {
     }
 
 
-    public static int getMaxPossibleAmount(CardInfo cardInfo) throws NoSuchElementException {
-        DashboardPage dash = new DashboardPage();
-        int possibleAmount = dash.getCardBalance(cardInfo);
-        return fake.number().numberBetween(0, possibleAmount);
+    public static int getPossibleAmount(int balance) {
+
+        return new Random().nextInt(balance) + 1;
     }
 
-    public static int getMaxImpossibleAmount(CardInfo cardInfo) throws NoSuchElementException {
-        DashboardPage dash = new DashboardPage();
-        int possibleAmount = dash.getCardBalance(cardInfo);
-        return fake.number().numberBetween(possibleAmount, possibleAmount + 1);
+    public static int getImpossibleAmount(int balance) {
+
+        return Math.abs(balance) + new Random().nextInt(1000);
     }
 
     @Value

@@ -21,7 +21,7 @@ public class MoneyTransfer {
     SelenideElement cancelButton = $("[data-test-id=action-cancel]");
     SelenideElement errorMessage = $("[data-test-id=error-message]");
 
-    public void transferMoney(DataHelper.CardInfo cardNumber, String amount) throws RuntimeException {
+    public void transferMoney(DataHelper.CardInfo cardNumber, String amount) {
         popUpString.val(amount);
         from.val(cardNumber.getCardNumber());
         popUpButton.click();
@@ -32,7 +32,7 @@ public class MoneyTransfer {
         return new DashboardPage();
     }
 
-    public void depositError(String expectedText) throws RuntimeException {
+    public void depositError(String expectedText) {
         errorMessage.shouldHave(exactText(expectedText)).shouldBe(visible, Duration.ofMillis(15));
     }
 }
